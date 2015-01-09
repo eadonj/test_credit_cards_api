@@ -1,0 +1,95 @@
+//
+//  Plannit-Prefix.pch
+//  Plannit
+//
+//  Created by Andris Zalitis on 27/12/14.
+//  Copyright (c) 2014 Plannit. All rights reserved.
+//
+
+#ifndef Plannit_Plannit_Prefix_pch
+#define Plannit_Plannit_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_7_0
+#warning "This project uses features only available in iOS SDK 7.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+//#import "KeyboardListener.h"
+//#import "MyProgress.h"
+//#import "UIViewController+BackLimits.h"
+#import "UIViewController+Dialogs.h"
+//#import "APIClient.h"
+//#import "AppUser.h"
+//#import "GlobalStringConstants.h"
+#import <Crashlytics/Crashlytics.h>
+#endif
+
+
+//------------------------------------- Utilities --------------------------------------
+
+// iOS version helper
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+// RGB color helper
+
+#define UIColorFromRGBA(rgbaValue) [UIColor colorWithRed:((rgbaValue>>24)&0xFF)/255.0 \
+green:((rgbaValue>>16)&0xFF)/255.0 \
+blue:((rgbaValue>>8)&0xFF)/255.0 \
+alpha:((rgbaValue)&0xFF)/255.0]
+
+
+#define LabelInCellWithTag(cell, tag) (UILabel *)[cell.contentView viewWithTag:tag];
+#define LabelInViewWithTag(view, tag) (UILabel *)[view viewWithTag:tag];
+
+#define ImageViewInCellWithTag(cell, tag) (UIImageView *)[cell.contentView viewWithTag:tag];
+#define ImageViewInViewWithTag(view, tag) (UIImageView *)[view viewWithTag:tag];
+
+#define ButtonInCellWithTag(cell, tag) (UIButton *)[cell.contentView viewWithTag:tag];
+#define ButtonInViewWithTag(view, tag) (UIButton *)[view viewWithTag:tag];
+
+
+#define EmptyStringIfNil(string) string ?: @"";
+
+// must be called from UIViewController
+#define DismissKeyboard [self.view endEditing:YES]
+
+
+#define FullRange(array) (NSRange){0, [array count]}
+
+
+// time measurement
+#define TICK NSDate *startTime = [NSDate date];
+#define TOCK DLog(@"%s, Time: %f", __func__, -[startTime timeIntervalSinceNow])
+
+//------------------------------------- Constants --------------------------------------
+
+// Colors
+#define WhiteColor [UIColor whiteColor]
+
+#define AccentColor UIColorFromRGBA(0x03a9f4ff)
+
+#define SecondaryAccentColor UIColorFromRGBA(0xe54c4eff)
+
+
+
+#endif

@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <Stripe.h>
+#import <Crashlytics/Crashlytics.h>
+
+NSString * const StripePublishableKey = @"pk_test_nVWYlwDxDRUKM72Ez1Sy2pKB";
 
 @interface AppDelegate ()
 
@@ -16,6 +20,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Stripe setDefaultPublishableKey:StripePublishableKey];
+    
+    // After all 3rd party stuff
+    [Crashlytics startWithAPIKey:@"74022d911fa2f68db71712c4831630f502bb0a55"];
+    
     // Override point for customization after application launch.
     return YES;
 }
