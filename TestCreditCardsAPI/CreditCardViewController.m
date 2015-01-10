@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Plannit. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CreditCardViewController.h"
 #import <Stripe.h>
 #import <MONActivityIndicatorView.h>
 #import "APIClient.h"
 
-@interface ViewController ()
+@interface CreditCardViewController ()
 
 @property (nonatomic, strong) MONActivityIndicatorView *activityIndicator;
 
 @end
 
-@implementation ViewController
+@implementation CreditCardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +54,9 @@
     }
     
     [self.activityIndicator startAnimating];
+    
+    // hide keyboard
+    [self.view endEditing:YES];
     
     STPCard *card = [[STPCard alloc] init];
     card.number = self.paymentView.card.number;

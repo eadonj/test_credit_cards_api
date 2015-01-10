@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B1156BE767B65573FBFC0CA"
+               BlueprintIdentifier = "BF5AA5802EC34DB743D9D7DC"
                BuildableName = "libPods-TestCreditCardsAPI-MONActivityIndicatorView.a"
                BlueprintName = "Pods-TestCreditCardsAPI-MONActivityIndicatorView"
                ReferencedContainer = "container:Pods.xcodeproj">

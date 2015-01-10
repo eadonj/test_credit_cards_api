@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PTKView.h"
 
-@interface ViewController : UIViewController<PTKViewDelegate>
+@interface CreditCardViewController : UIViewController<PTKViewDelegate>
 
 @property (nonatomic, weak) IBOutlet PTKView *paymentView;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;

@@ -12,6 +12,6 @@ target 'TestCreditCardsAPI' do
 
     #don't like visuals of this one
     #    pod 'PaymentKit', :git => 'https://github.com/ModasticGroupe/PaymentKit.git'
-    pod 'PaymentKit'
+    pod 'PaymentKit', :git => 'https://github.com/andris-zalitis/PaymentKit.git'
 end
 

@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 //#import "ResponseSerializer.h"
 #import <MapKit/MapKit.h>
+#import <Stripe.h>
 
 //#define P(params) [self authParamsWithParams:params]
 
@@ -256,6 +257,37 @@ static NSString * const BaseAddress = @"https://immense-badlands-7273.herokuapp.
 {
     static NSString *clientMobileNo = @"9876";
     [self PUT:@"users" parameters:@{@"cc_token" : cardToken, @"mobile_no" : clientMobileNo} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (successBlock) {
+            successBlock();
+        }
+    } failure:errorBlock];
+}
+
+- (void)saveMerchantWithName:(NSString *)name
+                       taxId:(NSString *)taxId
+                isIndividual:(BOOL)isIndividual
+            bankAccountToken:(NSString *)bankAccountToken
+              debitCardToken:(NSString *)debitCardToken
+              cardHolderName:(NSString *)cardHolderName
+                 withSuccess:(void (^) (void))successBlock
+                     failure:(void (^) (NSString *error))errorBlock
+{
+    static NSString *merchantMobileNo = @"1234";
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:merchantMobileNo forKey:@"mobile_no"];
+    params[@"name"] = name;
+    params[@"tax_id"] = taxId;
+    params[@"type"] = isIndividual ? @"individual" : @"corporation";
+    if (bankAccountToken) {
+        params[@"bank_account_token"] = bankAccountToken;
+    }
+    if (debitCardToken) {
+        params[@"debit_card_token"] = debitCardToken;
+    }
+    if (cardHolderName) {
+        params[@"card_holder_name"] = cardHolderName;
+    }
+    
+    [self PUT:@"users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (successBlock) {
             successBlock();
         }

@@ -10,9 +10,11 @@
 		810BD2961A5F616B001D9D36 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BD2951A5F616B001D9D36 /* APIClient.m */; };
 		810BD2991A5F633C001D9D36 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BD2981A5F633C001D9D36 /* Crashlytics.framework */; };
 		810BD29C1A5F6430001D9D36 /* UIViewController+Dialogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BD29B1A5F6430001D9D36 /* UIViewController+Dialogs.m */; };
+		810BD29F1A604963001D9D36 /* MerchantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BD29E1A604963001D9D36 /* MerchantViewController.m */; };
+		810BD2A21A609F76001D9D36 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BD2A11A609F76001D9D36 /* UIView+Shake.m */; };
 		8153A2361A5EFD8500925E7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153A2351A5EFD8500925E7D /* main.m */; };
 		8153A2391A5EFD8500925E7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153A2381A5EFD8500925E7D /* AppDelegate.m */; };
-		8153A23C1A5EFD8500925E7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153A23B1A5EFD8500925E7D /* ViewController.m */; };
+		8153A23C1A5EFD8500925E7D /* CreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153A23B1A5EFD8500925E7D /* CreditCardViewController.m */; };
 		8153A23F1A5EFD8500925E7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8153A23D1A5EFD8500925E7D /* Main.storyboard */; };
 		8153A2411A5EFD8500925E7D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8153A2401A5EFD8500925E7D /* Images.xcassets */; };
 		8153A2441A5EFD8500925E7D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153A2421A5EFD8500925E7D /* LaunchScreen.xib */; };
@@ -37,13 +39,17 @@
 		810BD2981A5F633C001D9D36 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		810BD29A1A5F6430001D9D36 /* UIViewController+Dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Dialogs.h"; sourceTree = "<group>"; };
 		810BD29B1A5F6430001D9D36 /* UIViewController+Dialogs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Dialogs.m"; sourceTree = "<group>"; };
+		810BD29D1A604963001D9D36 /* MerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantViewController.h; sourceTree = "<group>"; };
+		810BD29E1A604963001D9D36 /* MerchantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantViewController.m; sourceTree = "<group>"; };
+		810BD2A01A609F76001D9D36 /* UIView+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shake.h"; sourceTree = "<group>"; };
+		810BD2A11A609F76001D9D36 /* UIView+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shake.m"; sourceTree = "<group>"; };
 		8153A2301A5EFD8500925E7D /* TestCreditCardsAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCreditCardsAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8153A2341A5EFD8500925E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8153A2351A5EFD8500925E7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8153A2371A5EFD8500925E7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8153A2381A5EFD8500925E7D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8153A23A1A5EFD8500925E7D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8153A23B1A5EFD8500925E7D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8153A23A1A5EFD8500925E7D /* CreditCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditCardViewController.h; sourceTree = "<group>"; };
+		8153A23B1A5EFD8500925E7D /* CreditCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditCardViewController.m; sourceTree = "<group>"; };
 		8153A23E1A5EFD8500925E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8153A2401A5EFD8500925E7D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8153A2431A5EFD8500925E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -109,12 +115,16 @@
 			children = (
 				810BD29A1A5F6430001D9D36 /* UIViewController+Dialogs.h */,
 				810BD29B1A5F6430001D9D36 /* UIViewController+Dialogs.m */,
+				810BD2A01A609F76001D9D36 /* UIView+Shake.h */,
+				810BD2A11A609F76001D9D36 /* UIView+Shake.m */,
 				810BD2941A5F616B001D9D36 /* APIClient.h */,
 				810BD2951A5F616B001D9D36 /* APIClient.m */,
 				8153A2371A5EFD8500925E7D /* AppDelegate.h */,
 				8153A2381A5EFD8500925E7D /* AppDelegate.m */,
-				8153A23A1A5EFD8500925E7D /* ViewController.h */,
-				8153A23B1A5EFD8500925E7D /* ViewController.m */,
+				8153A23A1A5EFD8500925E7D /* CreditCardViewController.h */,
+				8153A23B1A5EFD8500925E7D /* CreditCardViewController.m */,
+				810BD29D1A604963001D9D36 /* MerchantViewController.h */,
+				810BD29E1A604963001D9D36 /* MerchantViewController.m */,
 				8153A23D1A5EFD8500925E7D /* Main.storyboard */,
 				8153A2401A5EFD8500925E7D /* Images.xcassets */,
 				8153A2421A5EFD8500925E7D /* LaunchScreen.xib */,
@@ -309,8 +319,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8153A23C1A5EFD8500925E7D /* ViewController.m in Sources */,
+				8153A23C1A5EFD8500925E7D /* CreditCardViewController.m in Sources */,
+				810BD2A21A609F76001D9D36 /* UIView+Shake.m in Sources */,
 				8153A2391A5EFD8500925E7D /* AppDelegate.m in Sources */,
+				810BD29F1A604963001D9D36 /* MerchantViewController.m in Sources */,
 				8153A2361A5EFD8500925E7D /* main.m in Sources */,
 				810BD29C1A5F6430001D9D36 /* UIViewController+Dialogs.m in Sources */,
 				810BD2961A5F616B001D9D36 /* APIClient.m in Sources */,

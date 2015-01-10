@@ -18,4 +18,13 @@
           withSuccess:(void (^) (void))successBlock
               failure:(void (^) (NSString *error))errorBlock;
 
+- (void)saveMerchantWithName:(NSString *)name
+                       taxId:(NSString *)taxId
+                isIndividual:(BOOL)isIndividual
+            bankAccountToken:(NSString *)bankAccountToken
+              debitCardToken:(NSString *)debitCardToken
+              cardHolderName:(NSString *)cardHolderName
+                 withSuccess:(void (^) (void))successBlock
+                     failure:(void (^) (NSString *error))errorBlock;
+
 @end

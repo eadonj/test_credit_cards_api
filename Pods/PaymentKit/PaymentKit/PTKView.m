@@ -19,6 +19,8 @@
 #define kPTKViewCardExpiryFieldEndX 84
 #define kPTKViewCardCVCFieldEndX 177
 
+#define kPTKViewOpaqueBackgroundLeftPadding 12
+
 static NSString *const kPTKLocalizedStringsTableName = @"PaymentKit";
 static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable";
 
@@ -29,6 +31,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 @private
     BOOL _isInitialState;
     BOOL _isValidState;
+    BOOL _isEmptyState;
 }
 
 @property (nonatomic, readonly, assign) UIResponder *firstResponderField;
@@ -61,8 +64,14 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (id)initWithFrame:(CGRect)frame
 {
+    return [self initWithFrame:frame transparentBackground:NO];
+}
+
+- (id)initWithFrame:(CGRect)frame transparentBackground:(BOOL)transparentBackground
+{
     self = [super initWithFrame:frame];
     if (self) {
+        _transparentBackground = transparentBackground;
         [self setup];
     }
     return self;
@@ -78,16 +87,20 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 {
     _isInitialState = YES;
     _isValidState = NO;
-
+    _isEmptyState = YES;
+    
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
     self.backgroundColor = [UIColor clearColor];
 
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    backgroundImageView.image = [[UIImage imageNamed:@"textfield"]
-            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
-    [self addSubview:backgroundImageView];
-
-    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(40, 12, self.frame.size.width - 40, 20)];
+    if (! self.transparentBackground) {
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        backgroundImageView.image = [[UIImage imageNamed:@"textfield"]
+                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
+        [self addSubview:backgroundImageView];
+    }
+    
+    CGFloat innerViewLeft = self.transparentBackground ? 40 : kPTKViewOpaqueBackgroundLeftPadding + 40;
+    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(innerViewLeft, 12, self.frame.size.width - innerViewLeft, 20)];
     self.innerView.clipsToBounds = YES;
 
     [self setupPlaceholderView];
@@ -96,16 +109,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     [self setupCardCVCField];
 
     [self.innerView addSubview:self.cardNumberField];
-
-    UIImageView *gradientImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 34)];
-    gradientImageView.image = [UIImage imageNamed:@"gradient"];
-    [self.innerView addSubview:gradientImageView];
-
-    self.opaqueOverGradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 9, 34)];
-    self.opaqueOverGradientView.backgroundColor = [UIColor colorWithRed:0.9686 green:0.9686
-                                                                   blue:0.9686 alpha:1.0000];
-    self.opaqueOverGradientView.alpha = 0.0;
-    [self.innerView addSubview:self.opaqueOverGradientView];
 
     [self addSubview:self.innerView];
     [self addSubview:self.placeholderView];
@@ -116,23 +119,25 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (void)setupPlaceholderView
 {
-    self.placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
+    CGFloat left = self.transparentBackground ? 0 : kPTKViewOpaqueBackgroundLeftPadding;
+    self.placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(left, 13, 32, 20)];
     self.placeholderView.backgroundColor = [UIColor clearColor];
     self.placeholderView.image = [UIImage imageNamed:@"placeholder"];
 
-    CALayer *clip = [CALayer layer];
-    clip.frame = CGRectMake(32, 0, 4, 20);
-    clip.backgroundColor = [UIColor clearColor].CGColor;
-    [self.placeholderView.layer addSublayer:clip];
+//    CALayer *clip = [CALayer layer];
+//    clip.frame = CGRectMake(32, 0, 4, 20);
+//    clip.backgroundColor = [UIColor clearColor].CGColor;
+//    [self.placeholderView.layer addSublayer:clip];
 }
 
 - (void)setupCardNumberField
 {
-    self.cardNumberField = [[PTKTextField alloc] initWithFrame:CGRectMake(12, 0, 170, 20)];
+    self.cardNumberField = [[PTKTextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
     self.cardNumberField.delegate = self;
     self.cardNumberField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_number" defaultValue:@"1234 5678 9012 3456"];
     self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    self.cardNumberField.textColor = DarkGreyColor;
+    self.cardNumberField.textColor = [UIColor colorWithWhite:0.2 alpha:1.f];
+    //self.cardNumberField.textColor = DarkGreyColor;
     self.cardNumberField.font = DefaultBoldFont;
 
     [self.cardNumberField.layer setMasksToBounds:YES];
@@ -221,7 +226,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
                                      self.cardCVCField.frame.origin.y,
                                      self.cardCVCField.frame.size.width,
                                      self.cardCVCField.frame.size.height);
-                             self.cardNumberField.frame = CGRectMake(12,
+                             self.cardNumberField.frame = CGRectMake(0,
                                      self.cardNumberField.frame.origin.y,
                                      self.cardNumberField.frame.size.width,
                                      self.cardNumberField.frame.size.height);
@@ -232,12 +237,15 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
                          }];
     }
 
-    [self.cardNumberField becomeFirstResponder];
+    if (!_isEmptyState) {
+        [self.cardNumberField becomeFirstResponder];
+    }
 }
 
 - (void)stateMeta
 {
     _isInitialState = NO;
+    _isEmptyState = NO;
 
     CGSize cardNumberSize;
     CGSize lastGroupSize;
@@ -599,7 +607,22 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (BOOL)resignFirstResponder;
 {
+    [super resignFirstResponder];
+    
     return [self.firstResponderField resignFirstResponder];
+}
+
+#pragma mark - additions
+- (void)setTextFieldCardNumber:(NSString*)cardNumberString
+{
+    NSString *resultString = [PTKTextField textByRemovingUselessSpacesFromString:cardNumberString];
+    PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:resultString];
+    
+    self.cardNumberField.text = [cardNumber formattedString];
+
+    [self setPlaceholderToCardType];
+    if (_isInitialState)
+        [self performSelector:@selector(stateMeta) withObject:nil afterDelay:0.3];
 }
 
 @end

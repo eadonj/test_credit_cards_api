@@ -21,7 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - MONActivityIndicatorView (0.0.1)
-  - PaymentKit (1.1.1)
+  - PaymentKit (1.1)
   - Stripe (3.0.0):
     - Stripe/Core (= 3.0.0)
   - Stripe/Core (3.0.0)
@@ -30,14 +30,23 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - MONActivityIndicatorView
-  - PaymentKit
+  - PaymentKit (from `https://github.com/andris-zalitis/PaymentKit.git`)
   - Stripe
   - Toast (~> 2.3)
+
+EXTERNAL SOURCES:
+  PaymentKit:
+    :git: https://github.com/andris-zalitis/PaymentKit.git
+
+CHECKOUT OPTIONS:
+  PaymentKit:
+    :commit: 68b14e1d1780b3fbdded4e93f9f649cc0f65c032
+    :git: https://github.com/andris-zalitis/PaymentKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   MONActivityIndicatorView: 728965121e59cef32c1bc4676f6868e35f3c8c61
-  PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
+  PaymentKit: 9c74e84fdf906b4ec5ee822c3dc6a19ae18df194
   Stripe: 7c3b67e5f57cb76ce5dd70b815a967ea20b14c33
   Toast: 6a3c2b1d70e426b26d130971c369670eac7aa9ce
 

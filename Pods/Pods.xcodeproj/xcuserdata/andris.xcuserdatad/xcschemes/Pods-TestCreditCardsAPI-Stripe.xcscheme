@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75C1A00B874E1D03ECF43A94"
+               BlueprintIdentifier = "87BE1CC3F9B4DEB6FEEBD0F0"
                BuildableName = "libPods-TestCreditCardsAPI-Stripe.a"
                BlueprintName = "Pods-TestCreditCardsAPI-Stripe"
                ReferencedContainer = "container:Pods.xcodeproj">

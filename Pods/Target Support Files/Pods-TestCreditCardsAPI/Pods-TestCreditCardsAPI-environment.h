@@ -58,7 +58,7 @@
 #define COCOAPODS_POD_AVAILABLE_PaymentKit
 #define COCOAPODS_VERSION_MAJOR_PaymentKit 1
 #define COCOAPODS_VERSION_MINOR_PaymentKit 1
-#define COCOAPODS_VERSION_PATCH_PaymentKit 1
+#define COCOAPODS_VERSION_PATCH_PaymentKit 0
 
 // Stripe
 #define COCOAPODS_POD_AVAILABLE_Stripe
