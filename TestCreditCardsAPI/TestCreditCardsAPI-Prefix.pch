@@ -90,6 +90,6 @@ alpha:((rgbaValue)&0xFF)/255.0]
 
 #define SecondaryAccentColor UIColorFromRGBA(0xe54c4eff)
 
-
+#define DefaultsKeyForAPIProvider @"APIProvider"
 
 #endif

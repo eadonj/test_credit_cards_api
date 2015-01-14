@@ -157,9 +157,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="438"/>
+            <point key="canvasLocation" x="286" y="152"/>
         </scene>
-        <!--Register Credit Card-->
+        <!--Customer Credit Card-->
         <scene sceneID="Vsg-KV-5GR">
             <objects>
                 <viewController id="g61-hH-DgD" customClass="CreditCardViewController" sceneMemberID="viewController">
@@ -200,22 +200,83 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ZRQ-mv-umh" secondAttribute="centerX" id="E1R-PZ-O2M"/>
                             <constraint firstItem="id1-VW-sV2" firstAttribute="top" secondItem="ZRQ-mv-umh" secondAttribute="bottom" constant="44" id="FlA-EN-dfZ"/>
                             <constraint firstItem="ZRQ-mv-umh" firstAttribute="top" secondItem="edu-Ma-7hH" secondAttribute="bottom" constant="34" id="NsN-ut-lKl"/>
                             <constraint firstAttribute="centerX" secondItem="id1-VW-sV2" secondAttribute="centerX" id="fv0-jV-sDT"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="V3A-N6-a0j" appends="YES" id="Pj0-4H-lJV"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Register Credit Card" id="Bjc-H6-zmh"/>
+                    <navigationItem key="navigationItem" title="Customer Credit Card" id="Bjc-H6-zmh">
+                        <barButtonItem key="rightBarButtonItem" image="settings-button" id="jKq-CA-OvR">
+                            <connections>
+                                <segue destination="BIY-b6-YXv" kind="push" id="ye7-HW-xB7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="paymentView" destination="ZRQ-mv-umh" id="jAU-iH-Nrw"/>
                         <outlet property="registerButton" destination="id1-VW-sV2" id="geV-sV-ndD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="87J-hI-xPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="V3A-N6-a0j">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="g61-hH-DgD" id="UrD-J2-SSA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="286" y="1092"/>
+            <point key="canvasLocation" x="286" y="806"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Hcz-sD-NXm">
+            <objects>
+                <viewController id="BIY-b6-YXv" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YbD-6U-Q9R"/>
+                        <viewControllerLayoutGuide type="bottom" id="J39-hi-X6d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dcn-f1-G0p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="API Provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhq-ea-e0F">
+                                <rect key="frame" x="83" y="103" width="154" height="35"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="29"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1PI-1N-ehy">
+                                <rect key="frame" x="0.0" y="146" width="320" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BIY-b6-YXv" id="zfk-6v-1ZS"/>
+                                    <outlet property="delegate" destination="BIY-b6-YXv" id="gie-Gk-b2O"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1PI-1N-ehy" firstAttribute="leading" secondItem="Dcn-f1-G0p" secondAttribute="leading" id="FsH-Gr-v8J"/>
+                            <constraint firstItem="Hhq-ea-e0F" firstAttribute="top" secondItem="YbD-6U-Q9R" secondAttribute="bottom" constant="39" id="K6k-MJ-Hd0"/>
+                            <constraint firstAttribute="trailing" secondItem="1PI-1N-ehy" secondAttribute="trailing" id="OpP-Oz-E4W"/>
+                            <constraint firstItem="1PI-1N-ehy" firstAttribute="top" secondItem="Hhq-ea-e0F" secondAttribute="bottom" constant="8" id="ZbX-Mo-7TJ"/>
+                            <constraint firstAttribute="centerX" secondItem="Hhq-ea-e0F" secondAttribute="centerX" id="u3m-I4-X6H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="KCe-Xc-vZq"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="pickerView" destination="1PI-1N-ehy" id="BAk-Qd-tSI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dmd-MC-iqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1481" y="1933"/>
         </scene>
         <!--Register Merchant-->
         <scene sceneID="XDX-fe-0Wh">
@@ -539,8 +600,16 @@
                             <constraint firstItem="jCH-b2-Hgb" firstAttribute="top" secondItem="MIO-2G-zxx" secondAttribute="top" id="zig-iA-9zC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Register Merchant" id="oaL-Pz-HKR"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Register Merchant" id="oaL-Pz-HKR">
+                        <barButtonItem key="rightBarButtonItem" image="settings-button" id="4z0-dY-Aq2">
+                            <connections>
+                                <segue destination="BIY-b6-YXv" kind="push" id="TJ9-eN-zWl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="640" height="568"/>
                     <connections>
@@ -569,7 +638,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNt-6g-gEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="1725"/>
+            <point key="canvasLocation" x="446" y="1933"/>
+        </scene>
+        <!--Customer Pays-->
+        <scene sceneID="bFg-Jh-7Lb">
+            <objects>
+                <viewController id="oNv-cn-aUa" customClass="PaymentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MvZ-nz-7zl"/>
+                        <viewControllerLayoutGuide type="bottom" id="NoE-XL-j9J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XF0-HK-07J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxY-7O-AWI">
+                                <rect key="frame" x="16" y="144" width="58" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100.00" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YPh-sw-TkE">
+                                <rect key="frame" x="82" y="140" width="222" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oNv-cn-aUa" id="Px1-dJ-pGo"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-nq-pZi">
+                                <rect key="frame" x="50" y="250" width="220" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="WJZ-00-5NK"/>
+                                </constraints>
+                                <state key="normal" title="Pay" backgroundImage="dark-gray">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="payApiCall:" destination="oNv-cn-aUa" eventType="touchUpInside" id="rQu-Zf-LbV"/>
+                                    <action selector="registerMerchant:" destination="WJf-kc-Zrn" eventType="touchUpInside" id="LPV-eW-6E0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="g5V-nq-pZi" secondAttribute="centerX" id="0Dv-NM-bvP"/>
+                            <constraint firstItem="g5V-nq-pZi" firstAttribute="top" secondItem="YPh-sw-TkE" secondAttribute="bottom" constant="80" id="2iI-DC-ccH"/>
+                            <constraint firstItem="YPh-sw-TkE" firstAttribute="leading" secondItem="XF0-HK-07J" secondAttribute="leading" priority="500" constant="16" id="AWy-vR-axo"/>
+                            <constraint firstAttribute="trailing" secondItem="YPh-sw-TkE" secondAttribute="trailing" constant="16" id="IuF-RR-Sss"/>
+                            <constraint firstItem="YPh-sw-TkE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KxY-7O-AWI" secondAttribute="trailing" constant="8" id="etD-j4-dD0"/>
+                            <constraint firstItem="YPh-sw-TkE" firstAttribute="top" secondItem="MvZ-nz-7zl" secondAttribute="bottom" constant="76" id="jbH-No-HMv"/>
+                            <constraint firstItem="KxY-7O-AWI" firstAttribute="leading" secondItem="XF0-HK-07J" secondAttribute="leading" constant="16" id="qf5-ca-E5b"/>
+                            <constraint firstItem="YPh-sw-TkE" firstAttribute="centerY" secondItem="KxY-7O-AWI" secondAttribute="centerY" constant="0.5" id="uL5-QJ-THd"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5Tq-vw-Ibm" appends="YES" id="1hd-Bi-uIE"/>
+                        </connections>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Customer Pays" id="eor-sT-3St">
+                        <barButtonItem key="rightBarButtonItem" image="settings-button" id="Q65-jO-0HH">
+                            <connections>
+                                <segue destination="BIY-b6-YXv" kind="push" id="GxV-L5-1Zu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="amountField" destination="YPh-sw-TkE" id="7Zt-e6-dj7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mdk-cR-twC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5Tq-vw-Ibm">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="oNv-cn-aUa" id="rvt-9M-0yp"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="286" y="2679"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cDV-Vt-qQR">
@@ -587,13 +738,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzD-aV-SCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="438"/>
+            <point key="canvasLocation" x="-127" y="152"/>
         </scene>
-        <!--Register Credit Card-->
+        <!--Customer Credit Card-->
         <scene sceneID="nJd-bC-MZK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CUP-Zk-7zi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Register Credit Card" id="fwC-Zp-h1T"/>
+                    <tabBarItem key="tabBarItem" title="Customer Credit Card" id="fwC-Zp-h1T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Kw-98-RZp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -606,7 +757,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJ9-Dk-VAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="1092"/>
+            <point key="canvasLocation" x="-127" y="806"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JUE-fP-lzk">
@@ -619,19 +770,20 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="CUP-Zk-7zi" kind="relationship" relationship="viewControllers" id="Zhr-gY-XGp"/>
                         <segue destination="rbZ-Mt-EjJ" kind="relationship" relationship="viewControllers" id="Vp0-RY-Vto"/>
+                        <segue destination="CUP-Zk-7zi" kind="relationship" relationship="viewControllers" id="wjd-Qj-ida"/>
+                        <segue destination="Whw-Ps-BiO" kind="relationship" relationship="viewControllers" id="EJ7-H0-ypX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIl-gk-f0i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="1387"/>
         </scene>
-        <!--Register Merchant-->
+        <!--Merchant-->
         <scene sceneID="80N-tG-zsU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rbZ-Mt-EjJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Register Merchant" id="VxX-O4-eG9"/>
+                    <tabBarItem key="tabBarItem" title="Merchant" id="VxX-O4-eG9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8dG-e9-ohO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -644,15 +796,38 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7f-ky-4uA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="1725"/>
+            <point key="canvasLocation" x="-127" y="1933"/>
+        </scene>
+        <!--Customer Pays-->
+        <scene sceneID="mRC-tn-Erx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Whw-Ps-BiO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Customer Pays" id="rQP-dx-Akt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g6P-ne-Kzy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oNv-cn-aUa" kind="relationship" relationship="rootViewController" id="qOw-dh-IDe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m3U-8c-j5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127" y="2679"/>
         </scene>
     </scenes>
     <resources>
         <image name="dark-gray" width="40" height="40"/>
+        <image name="settings-button" width="19" height="19"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="GxV-L5-1Zu"/>
+    </inferredMetricsTieBreakers>
 </document>

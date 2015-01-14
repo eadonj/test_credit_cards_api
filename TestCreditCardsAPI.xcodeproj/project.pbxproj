@@ -20,6 +20,11 @@
 		8153A2441A5EFD8500925E7D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153A2421A5EFD8500925E7D /* LaunchScreen.xib */; };
 		8153A2501A5EFD8500925E7D /* TestCreditCardsAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153A24F1A5EFD8500925E7D /* TestCreditCardsAPITests.m */; };
 		81CD09A7A996104FE7B442D1 /* libPods-TestCreditCardsAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACD12DFB00724D2F43C1852 /* libPods-TestCreditCardsAPI.a */; };
+		81D59EB81A647B9C002BD31D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D59EB71A647B9C002BD31D /* CoreTelephony.framework */; };
+		81D59EBB1A64864C002BD31D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D59EBA1A64864C002BD31D /* SettingsViewController.m */; };
+		81D59EBE1A648932002BD31D /* Tokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D59EBD1A648932002BD31D /* Tokenizer.m */; };
+		81D59EC61A64A0F7002BD31D /* balanced.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D59EC01A64A0F7002BD31D /* balanced.a */; };
+		81D59EC91A65CD02002BD31D /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D59EC81A65CD02002BD31D /* PaymentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,18 @@
 		8153A24E1A5EFD8500925E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8153A24F1A5EFD8500925E7D /* TestCreditCardsAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCreditCardsAPITests.m; sourceTree = "<group>"; };
 		8153A2A21A5F3B8F00925E7D /* TestCreditCardsAPI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestCreditCardsAPI-Prefix.pch"; sourceTree = "<group>"; };
+		81D59EB71A647B9C002BD31D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		81D59EB91A64864C002BD31D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		81D59EBA1A64864C002BD31D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		81D59EBC1A648932002BD31D /* Tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tokenizer.h; sourceTree = "<group>"; };
+		81D59EBD1A648932002BD31D /* Tokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tokenizer.m; sourceTree = "<group>"; };
+		81D59EC01A64A0F7002BD31D /* balanced.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = balanced.a; sourceTree = "<group>"; };
+		81D59EC21A64A0F7002BD31D /* Balanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balanced.h; sourceTree = "<group>"; };
+		81D59EC31A64A0F7002BD31D /* BPBankAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBankAccount.h; sourceTree = "<group>"; };
+		81D59EC41A64A0F7002BD31D /* BPCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCard.h; sourceTree = "<group>"; };
+		81D59EC51A64A0F7002BD31D /* BPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUtilities.h; sourceTree = "<group>"; };
+		81D59EC71A65CD02002BD31D /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		81D59EC81A65CD02002BD31D /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		9ACD12DFB00724D2F43C1852 /* libPods-TestCreditCardsAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestCreditCardsAPI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB7D6502FA57F262B66E421 /* Pods-TestCreditCardsAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestCreditCardsAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestCreditCardsAPI/Pods-TestCreditCardsAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,8 +83,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D59EB81A647B9C002BD31D /* CoreTelephony.framework in Frameworks */,
 				810BD2991A5F633C001D9D36 /* Crashlytics.framework in Frameworks */,
 				81CD09A7A996104FE7B442D1 /* libPods-TestCreditCardsAPI.a in Frameworks */,
+				81D59EC61A64A0F7002BD31D /* balanced.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +144,12 @@
 				8153A23B1A5EFD8500925E7D /* CreditCardViewController.m */,
 				810BD29D1A604963001D9D36 /* MerchantViewController.h */,
 				810BD29E1A604963001D9D36 /* MerchantViewController.m */,
+				81D59EB91A64864C002BD31D /* SettingsViewController.h */,
+				81D59EBA1A64864C002BD31D /* SettingsViewController.m */,
+				81D59EC71A65CD02002BD31D /* PaymentViewController.h */,
+				81D59EC81A65CD02002BD31D /* PaymentViewController.m */,
+				81D59EBC1A648932002BD31D /* Tokenizer.h */,
+				81D59EBD1A648932002BD31D /* Tokenizer.m */,
 				8153A23D1A5EFD8500925E7D /* Main.storyboard */,
 				8153A2401A5EFD8500925E7D /* Images.xcassets */,
 				8153A2421A5EFD8500925E7D /* LaunchScreen.xib */,
@@ -160,9 +185,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		81D59EBF1A64A0F7002BD31D /* balanced-ios-1.01 */ = {
+			isa = PBXGroup;
+			children = (
+				81D59EC01A64A0F7002BD31D /* balanced.a */,
+				81D59EC11A64A0F7002BD31D /* include */,
+			);
+			path = "balanced-ios-1.01";
+			sourceTree = "<group>";
+		};
+		81D59EC11A64A0F7002BD31D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				81D59EC21A64A0F7002BD31D /* Balanced.h */,
+				81D59EC31A64A0F7002BD31D /* BPBankAccount.h */,
+				81D59EC41A64A0F7002BD31D /* BPCard.h */,
+				81D59EC51A64A0F7002BD31D /* BPUtilities.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		8CB0291EDD4063E69DC05143 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81D59EBF1A64A0F7002BD31D /* balanced-ios-1.01 */,
+				81D59EB71A647B9C002BD31D /* CoreTelephony.framework */,
 				810BD2981A5F633C001D9D36 /* Crashlytics.framework */,
 				9ACD12DFB00724D2F43C1852 /* libPods-TestCreditCardsAPI.a */,
 			);
@@ -319,9 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D59EBE1A648932002BD31D /* Tokenizer.m in Sources */,
 				8153A23C1A5EFD8500925E7D /* CreditCardViewController.m in Sources */,
 				810BD2A21A609F76001D9D36 /* UIView+Shake.m in Sources */,
+				81D59EC91A65CD02002BD31D /* PaymentViewController.m in Sources */,
 				8153A2391A5EFD8500925E7D /* AppDelegate.m in Sources */,
+				81D59EBB1A64864C002BD31D /* SettingsViewController.m in Sources */,
 				810BD29F1A604963001D9D36 /* MerchantViewController.m in Sources */,
 				8153A2361A5EFD8500925E7D /* main.m in Sources */,
 				810BD29C1A5F6430001D9D36 /* UIViewController+Dialogs.m in Sources */,
@@ -456,6 +506,10 @@
 				GCC_PREFIX_HEADER = "TestCreditCardsAPI/TestCreditCardsAPI-Prefix.pch";
 				INFOPLIST_FILE = TestCreditCardsAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/balanced-ios-1.01",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -473,6 +527,10 @@
 				GCC_PREFIX_HEADER = "TestCreditCardsAPI/TestCreditCardsAPI-Prefix.pch";
 				INFOPLIST_FILE = TestCreditCardsAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/balanced-ios-1.01",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -11,6 +11,7 @@
 //#import "ResponseSerializer.h"
 #import <MapKit/MapKit.h>
 #import <Stripe.h>
+#import "Tokenizer.h"
 
 //#define P(params) [self authParamsWithParams:params]
 
@@ -256,7 +257,12 @@ static NSString * const BaseAddress = @"https://immense-badlands-7273.herokuapp.
               failure:(void (^) (NSString *error))errorBlock
 {
     static NSString *clientMobileNo = @"9876";
-    [self PUT:@"users" parameters:@{@"cc_token" : cardToken, @"mobile_no" : clientMobileNo} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [self PUT:@"users" parameters:@{@"cc_token" : cardToken,
+                                    @"mobile_no" : clientMobileNo,
+                                    @"api_provider" : [[Tokenizer sharedInstance] selectedApiLowercaseTitle]
+                                    }
+                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (successBlock) {
             successBlock();
         }
@@ -268,7 +274,6 @@ static NSString * const BaseAddress = @"https://immense-badlands-7273.herokuapp.
                 isIndividual:(BOOL)isIndividual
             bankAccountToken:(NSString *)bankAccountToken
               debitCardToken:(NSString *)debitCardToken
-              cardHolderName:(NSString *)cardHolderName
                  withSuccess:(void (^) (void))successBlock
                      failure:(void (^) (NSString *error))errorBlock
 {
@@ -283,15 +288,32 @@ static NSString * const BaseAddress = @"https://immense-badlands-7273.herokuapp.
     if (debitCardToken) {
         params[@"debit_card_token"] = debitCardToken;
     }
-    if (cardHolderName) {
-        params[@"card_holder_name"] = cardHolderName;
-    }
+    
+    params[@"api_provider"] = [[Tokenizer sharedInstance] selectedApiLowercaseTitle];
     
     [self PUT:@"users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (successBlock) {
             successBlock();
         }
     } failure:errorBlock];
+}
+
+
+- (void)customerPaysAmount:(float)amount
+                   success:(void (^) (void))successBlock
+                   failure:(void (^) (NSString *error))errorBlock
+{
+    static NSString *clientMobileNo = @"9876";
+    
+    [self POST:@"payment" parameters:@{@"mobile_no" : clientMobileNo,
+                                       @"amount" : [NSNumber numberWithFloat:amount],
+                                       @"api_provider" : [[Tokenizer sharedInstance] selectedApiLowercaseTitle]
+                                       }
+       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+           if (successBlock) {
+               successBlock();
+           }
+       } failure:errorBlock];
 }
 
 @end

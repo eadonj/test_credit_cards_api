@@ -23,8 +23,11 @@
                 isIndividual:(BOOL)isIndividual
             bankAccountToken:(NSString *)bankAccountToken
               debitCardToken:(NSString *)debitCardToken
-              cardHolderName:(NSString *)cardHolderName
                  withSuccess:(void (^) (void))successBlock
                      failure:(void (^) (NSString *error))errorBlock;
+
+- (void)customerPaysAmount:(float)amount
+                   success:(void (^) (void))successBlock
+                   failure:(void (^) (NSString *error))errorBlock;
 
 @end

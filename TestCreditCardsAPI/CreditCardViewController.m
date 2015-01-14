@@ -10,6 +10,7 @@
 #import <Stripe.h>
 #import <MONActivityIndicatorView.h>
 #import "APIClient.h"
+#import "Tokenizer.h"
 
 @interface CreditCardViewController ()
 
@@ -43,45 +44,50 @@
     if (![self.paymentView isValid]) {
         return;
     }
-    if (![Stripe defaultPublishableKey]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No Publishable Key"
-                                                          message:@"Please specify a Stripe Publishable Key in Constants.m"
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                otherButtonTitles:nil];
-        [message show];
-        return;
-    }
     
     [self.activityIndicator startAnimating];
     
     // hide keyboard
     [self.view endEditing:YES];
+
+    [[Tokenizer sharedInstance] tokenizeCreditCardWithNumber:self.paymentView.card.number
+                                             expirationMonth:self.paymentView.card.expMonth
+                                              expirationYear:self.paymentView.card.expYear
+                                                         cvc:self.paymentView.card.cvc
+                                                        name:nil
+                                                 countryCode:nil
+                                                  postalCode:nil
+                                                     success:^(NSString *token) {
+                                                         NSLog(@"token : %@", token);
+                                                         [[APIClient sharedInstance] saveCardToken:token withSuccess:^{
+                                                             [self.activityIndicator stopAnimating];
+                                                             CLS_LOG(@"Saved");
+                                                             [self showToast:@"Saved on Server!" onView:self.view];
+                                                         } failure:^(NSString *error) {
+                                                             [self.activityIndicator stopAnimating];
+                                                             [self showShortError:error];
+                                                         }];
+                                                     } error:^(NSError *error) {
+                                                         [self.activityIndicator stopAnimating];
+                                                         NSLog(@"error : %@", error);
+                                                         [self showShortError:error.description];
+                                                     }];
     
-    STPCard *card = [[STPCard alloc] init];
-    card.number = self.paymentView.card.number;
-    card.expMonth = self.paymentView.card.expMonth;
-    card.expYear = self.paymentView.card.expYear;
-    card.cvc = self.paymentView.card.cvc;
-    [[STPAPIClient sharedClient] createTokenWithCard:card
-                                          completion:^(STPToken *token, NSError *error) {
-                                              if (error) {
-                                                  [self.activityIndicator stopAnimating];
-                                                  NSLog(@"error : %@", error);
-                                                  [self showShortError:error.description];
-//                                                  [self hasError:error];
-                                              } else {
-//                                                  [self hasToken:token];
-                                                  NSLog(@"token : %@", token);
-                                                  [[APIClient sharedInstance] saveCardToken:token.tokenId withSuccess:^{
-                                                      [self.activityIndicator stopAnimating];
-                                                      CLS_LOG(@"Saved");
-                                                      [self showToast:@"Saved on Server!" onView:self.view];
-                                                  } failure:^(NSString *error) {
-                                                      [self.activityIndicator stopAnimating];
-                                                      [self showShortError:error];
-                                                  }];
-                                              }
-                                          }];
+//    if (![Stripe defaultPublishableKey]) {
+//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No Publishable Key"
+//                                                          message:@"Please specify a Stripe Publishable Key in Constants.m"
+//                                                         delegate:nil
+//                                                cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+//                                                otherButtonTitles:nil];
+//        [message show];
+//        return;
+//    }
+    
+}
+
+
+- (IBAction)dismissKeyboard:(id)sender
+{
+    [self.view endEditing:YES];
 }
 @end

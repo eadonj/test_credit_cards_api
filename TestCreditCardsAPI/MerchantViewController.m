@@ -11,6 +11,7 @@
 #import <Stripe.h>
 #import "APIClient.h"
 #import "UIView+Shake.h"
+#import "Tokenizer.h"
 
 @interface MerchantViewController ()
 
@@ -259,44 +260,43 @@
 
     [self hideKeyboard];
     [self.activityIndicator startAnimating];
-    
+
     
     if (self.paymentTypeSegmentedControl.selectedSegmentIndex == 0) {
-        
-        STPBankAccount *bankAccount = [[STPBankAccount alloc] init];
-        bankAccount.routingNumber = self.routingNoField.text;
-        bankAccount.accountNumber = self.accountNoField.text;
-        bankAccount.country = @"US";
-        
-        [[STPAPIClient sharedClient] createTokenWithBankAccount:bankAccount
-                                                     completion:^(STPToken *token, NSError *error) {
-            if (error) {
-                [self.activityIndicator stopAnimating];
-                NSLog(@"error : %@", error);
-                [self showShortError:error.description];
-            } else {
-                NSLog(@"account token : %@", token);
-                [self postMerchantToServerWithBankAccountToken:token.tokenId debitCardToken:nil];
-            }
-        }];
-    } else {
-        STPCard *debitCard = [[STPCard alloc] init];
-        debitCard.number = self.debitCardView.card.number;
-        debitCard.expMonth = self.debitCardView.card.expMonth;
-        debitCard.expYear = self.debitCardView.card.expYear;
-        debitCard.cvc = self.debitCardView.card.cvc;
-        [[STPAPIClient sharedClient] createTokenWithCard:debitCard
-                                              completion:^(STPToken *token, NSError *error) {
-                                                  if (error) {
-                                                      [self.activityIndicator stopAnimating];
-                                                      NSLog(@"error : %@", error);
-                                                      [self showShortError:error.description];
-                                                  } else {
-                                                      NSLog(@"token : %@", token);
-                                                      [self postMerchantToServerWithBankAccountToken:nil debitCardToken:token.tokenId];
-                                                  }
-                                              }];
+        NSString *accountHolderName = self.personTypeSegmentedControl.selectedSegmentIndex == 0 ?
+            self.individualNameField.text :
+            self.cardHolderNameField.text;
 
+        [[Tokenizer sharedInstance] tokenizeBankAcccountWithNumber:self.accountNoField.text
+                                                     routingNumber:self.routingNoField.text
+                                                              name:accountHolderName
+                                                       countryCode:nil postalCode:nil success:^(NSString *token) {
+                                                           CLS_LOG(@"account token : %@", token);
+                                                           [self postMerchantToServerWithBankAccountToken:token debitCardToken:nil];
+                                                       } error:^(NSError *error) {
+                                                           [self.activityIndicator stopAnimating];
+                                                           CLS_LOG(@"error : %@", error);
+                                                           [self showShortError:error.description];
+                                                       }];
+    } else {
+        NSString *cardHolderName = self.personTypeSegmentedControl.selectedSegmentIndex == 0 ?
+            self.individualNameField.text :
+            self.cardHolderNameField.text;
+        [[Tokenizer sharedInstance] tokenizeCreditCardWithNumber:self.debitCardView.card.number
+                                                 expirationMonth:self.debitCardView.card.expMonth
+                                                  expirationYear:self.debitCardView.card.expYear
+                                                             cvc:self.debitCardView.card.cvc
+                                                            name:cardHolderName
+                                                     countryCode:nil
+                                                      postalCode:nil
+                                                         success:^(NSString *token) {
+                                                             NSLog(@"token : %@", token);
+                                                             [self postMerchantToServerWithBankAccountToken:nil debitCardToken:token];
+                                                         } error:^(NSError *error) {
+                                                             [self.activityIndicator stopAnimating];
+                                                             NSLog(@"error : %@", error);
+                                                             [self showShortError:error.description];
+                                                         }];
     }
 }
 
@@ -308,7 +308,6 @@
                                         isIndividual:isIndividual
                                     bankAccountToken:bankAccountToken
                                       debitCardToken:debitCardToken
-                                      cardHolderName:isIndividual ? nil : self.cardHolderNameField.text
                                          withSuccess:^{
                                              [self.activityIndicator stopAnimating];
                                              CLS_LOG(@"Saved");
